@@ -1,0 +1,328 @@
+/* === RESET AND BASE STYLES === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+}
+
+/* === BACKGROUND ANIMATION === */
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+}
+
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    background: #e94560;
+    top: -150px;
+    left: -100px;
+    animation: float 8s ease-in-out infinite;
+}
+
+.shape-2 {
+    width: 350px;
+    height: 350px;
+    background: #0f3460;
+    bottom: -100px;
+    right: -100px;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+.shape-3 {
+    width: 200px;
+    height: 200px;
+    background: #533483;
+    top: 40%;
+    right: 20%;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, 30px); }
+}
+
+/* === MAIN CONTAINER === */
+.container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* === HEADER === */
+header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 35px rgba(233, 69, 96, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 15px 35px rgba(233, 69, 96, 0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 15px 45px rgba(233, 69, 96, 0.5); }
+}
+
+.icon-box svg {
+    width: 40px;
+    height: 40px;
+    stroke: white;
+    fill: none;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.95rem;
+}
+
+/* === PASSWORD INPUT SECTION === */
+.input-section {
+    margin-bottom: 30px;
+}
+
+.password-container {
+    display: flex;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 14px;
+    padding: 6px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.password-container:focus-within {
+    border-color: rgba(233, 69, 96, 0.5);
+    box-shadow: 0 0 25px rgba(233, 69, 96, 0.2);
+}
+
+.password-container input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 14px 16px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.password-container input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.toggle-btn {
+    background: transparent;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+/* === REQUIREMENTS LIST === */
+.requirements {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.req-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.req-item.active {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+}
+
+.req-item.active .req-icon::before {
+    content: '✓';
+    color: #4caf50;
+}
+
+.req-icon {
+    font-size: 0.8rem;
+}
+
+/* === STRENGTH METER === */
+.meter-section {
+    margin-bottom: 30px;
+}
+
+.meter-container {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.meter-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #e94560, #f59e0b, #10b981, #059670);
+    border-radius: 5px;
+    transition: width 0.5s ease;
+    background-size: 300% 100%;
+    animation: gradientMove 2s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.meter-fill.weak {
+    width: 25%;
+    background: #e94560;
+}
+
+.meter-fill.fair {
+    width: 50%;
+    background: #f59e0b;
+}
+
+.meter-fill.strong {
+    width: 75%;
+    background: #10b981;
+}
+
+.meter-fill.very-strong {
+    width: 100%;
+    background: #059670;
+}
+
+.meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* === RESULT SECTION === */
+.result-section {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.result-section.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.result-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.result-icon {
+    font-size: 2.5rem;
+}
+
+.result-level {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.result-section.weak .result-level { color: #e94560; }
+.result-section.fair .result-level { color: #f59e0b; }
+.result-section.strong .result-level { color: #10b981; }
+.result-section.very-strong .result-level { color: #059670; }
+
+.score-display {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+#scoreValue {
+    font-weight: 700;
+}
+
+.feedback-list {
+    text-align: left;
+}
+
+.feedback-item {
+    padding: 10px;
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-size:
